@@ -40,7 +40,6 @@ create table Producto (
 	constraint fk_categoriaproducto foreign key (Categoria) references Categoria(Descripcion)
 );
 
-
 create table Pedido_al_proveedor(
 	Codigo int primary key not null,
 	ID_proveedor int not null,
@@ -51,30 +50,29 @@ create table Pedido_al_proveedor(
 	constraint fk_idproveedor foreign key (ID_proveedor) references Proveedores(ID),
 	constraint fk_idproducto foreign key (ID_producto) references Producto(Codigo)
 )
-
 CREATE TABLE Producto_almacenado(
-ID_producto int NOT NULL,
-Cantidad_almacenada int NOT NULL,
-Cantidad_estante int NOT NULL,
-Fecha_caducidad date NOT NULL,
-constraint fk_idproducto foreign key (ID_producto) references Producto(Codigo)
+	ID_producto int NOT NULL,
+	Cantidad_almacenada int NOT NULL,
+	Cantidad_estante int NOT NULL,
+	Fecha_caducidad date NOT NULL,
+	constraint fk_idproducto1 foreign key (ID_producto) references Producto(Codigo)
 )
 
 CREATE TABLE Ventas(
-Codigo int PRIMARY KEY NOT NULL,
-ID_cliente int NOT NULL,
-Ingreso_total int NOT NULL,
-Fecha date NOT NULL,
-constraint fk_idcliente foreign key (ID_cliente) references Clientes(ID)
+	Codigo int PRIMARY KEY NOT NULL,
+	ID_cliente int NOT NULL,
+	Ingreso_total int NOT NULL,
+	Fecha date NOT NULL,
+	constraint fk_idcliente1 foreign key (ID_cliente) references Clientes(ID)
 )
 
 CREATE TABLE Producto_vendido(
-Codigo int PRIMARY KEY NOT NULL,
-ID_venta int NOT NULL,
-ID_producto int NOT NULL,
-Cantidad int NOT NULL,
-constraint fk_idventa foreign key (ID_venta) references Ventas(Codigo),
-constraint fk_idproducto foreign key (ID_producto) references Producto(Codigo)
+	Codigo int PRIMARY KEY NOT NULL,
+	ID_venta int NOT NULL,
+	ID_producto int NOT NULL,
+	Cantidad int NOT NULL,
+	constraint fk_idventa foreign key (ID_venta) references Ventas(Codigo),
+	constraint fk_idproducto2 foreign key (ID_producto) references Producto(Codigo)
 )
 
 CREATE TABLE Cuentas_credito(
@@ -82,7 +80,7 @@ CREATE TABLE Cuentas_credito(
 	ID_cliente int NOT NULL,
 	Total_debe int NOT NULL,
 	Fecha_emitida int NOT NULL,
-	constraint fk_idcliente foreign key (ID_cliente) references Clientes(ID)
+	constraint fk_idcliente2 foreign key (ID_cliente) references Clientes(ID)
 )
 
 CREATE TABLE Cuentas_pagadas(
@@ -104,5 +102,5 @@ CREATE TABLE Gasto_casa(
 	ID_producto int NOT NULL,
 	Cantidad int NOT NULL,
 	Fecha date NOT NULL,
-	constraint fk_idproducto foreign key (ID_producto) references Producto(Codigo)
+	constraint fk_idproducto4 foreign key (ID_producto) references Producto(Codigo)
 )
